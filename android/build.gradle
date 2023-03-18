@@ -1,7 +1,8 @@
-buildscript {
+uildscript {
     if (project == rootProject) {
         repositories {
             google()
+            mavenCentral()
             jcenter()
         }
 
@@ -19,9 +20,9 @@ def safeExtGet(prop, fallback) {
 
 android {
     compileSdkVersion safeExtGet('YandexMobileAds_compileSdkVersion', 31)
-    buildToolsVersion safeExtGet('YandexMobileAds_buildToolsVersion', '31.0.0')
+
     defaultConfig {
-        minSdkVersion safeExtGet('YandexMobileAds_minSdkVersion', 24)
+        minSdkVersion safeExtGet('YandexMobileAds_minSdkVersion', 21)
         targetSdkVersion safeExtGet('YandexMobileAds_targetSdkVersion', 31)
         versionCode 1
         versionName "1.0"
@@ -49,13 +50,12 @@ repositories {
         url("$rootDir/../node_modules/react-native/android")
     }
     google()
+    mavenCentral()
     jcenter()
 }
 
 dependencies {
-  def mobileadsVersion = safeExtGet('YandexMobileAds_mobileadsVersion', '5.5.1')
-
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"  // From node_modules
-  implementation "com.yandex.android:mobileads:$mobileadsVersion"
+  implementation 'com.yandex.android:mobileads:5.6.0'
 }
